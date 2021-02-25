@@ -2,7 +2,11 @@ package com.example.android.wisatasitubondowithsearchview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -53,6 +57,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // pasang tempatWisataAdapter ke listview
         listView.setAdapter(tempatWisataAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Uri url = Uri.parse("https://josikie.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, url);;
+                startActivity(intent);
+            }
+        });
         // menemukan SearchView pada layout di activity_main.xml menggunakan id
         searchView = findViewById(R.id.search);
         // menempelkan querytextlistener yang didalamnya ada this yang merujuk ke MainActivity.java
